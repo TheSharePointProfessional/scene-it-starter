@@ -13,4 +13,12 @@ body {
 .results {
 	margin-top: 20px;
 }
-
+.flex-container-cards {
+	display: flex;
+	flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    /* border-style: dotted;
+    border-color: red; */
+}
