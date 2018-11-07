@@ -14,21 +14,21 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         return movieHTML.join('')
     }
-    // document.getElementsByClassName('movies-container')[0].innerHTML = renderMovies(movieData)
     document.getElementById('search-form').addEventListener('submit', function(e){
         e.preventDefault()
         var searchString = document.getElementById("search-bar").value
         var urlEncodedSearchString = encodeURIComponent(searchString)
         axios.get("http://www.omdbapi.com/?apikey=3430a78&s=" + urlEncodedSearchString).then(function(response){
             console.log(response.data)
-            $(".movies-container").append(renderMovies(response.data.Search))
+            movieData = response.data.Search
+            $(".movies-container").append(renderMovies(movieData))
         })
-        
     })
 })
+
 function saveToWatchlist(imdbID) {
     console.log('test')
-    var movie = movieData.find(function(currentMovie){
+    var movie = movieData.find(function(currentMovie) {
         return currentMovie.imdbID == imdbID
     })
     var watchlistJSON = localStorage.getItem('watchlist')
