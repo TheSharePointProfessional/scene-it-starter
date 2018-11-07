@@ -21,13 +21,14 @@ document.addEventListener('DOMContentLoaded', function() {
         var urlEncodedSearchString = encodeURIComponent(searchString)
         axios.get("http://www.omdbapi.com/?apikey=3430a78&s=" + urlEncodedSearchString).then(function(response){
             console.log(response.data)
+            movieData = response.data.Search
             $(".movies-container").append(renderMovies(response.data.Search))
         })
         
     })
 })
 function saveToWatchlist(imdbID) {
-    console.log('test')
+    // console.log('test')
     var movie = movieData.find(function(currentMovie){
         return currentMovie.imdbID == imdbID
     })
