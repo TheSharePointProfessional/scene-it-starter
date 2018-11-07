@@ -17,7 +17,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // document.getElementsByClassName('movies-container')[0].innerHTML = renderMovies(movieData)
     document.getElementById('search-form').addEventListener('submit', function(e){
         e.preventDefault()
-        $(".movies-container").append(renderMovies(movieData))
+        var searchString = document.getElementById("search-bar").value
+        var urlEncodedSearchString = encodeURIComponent(searchString)
+        axios.get("http://www.omdbapi.com/?apikey=3430a78&s=" + urlEncodedSearchString).then(function(response){
+            console.log(response.data)
+            $(".movies-container").append(renderMovies(response.data.Search))
+        })
+        
     })
 })
 function saveToWatchlist(imdbID) {
